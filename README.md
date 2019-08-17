@@ -1,7 +1,7 @@
 # 택시 배차 앱 API 
 
 ### DB 모델
-![](./model.png)
+![](../document/model.png)
 
 ### API SPEC 
 
