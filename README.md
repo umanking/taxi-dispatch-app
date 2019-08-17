@@ -1,7 +1,7 @@
 # 택시 배차 앱 API 
 
 ### DB 모델
-![](../document/model.png)
+![](https://user-images.githubusercontent.com/28615416/63217862-7be79b80-c188-11e9-8cc4-1f3c8566f9fc.png)
 
 ### API SPEC 
 
