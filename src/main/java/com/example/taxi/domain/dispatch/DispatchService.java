@@ -15,15 +15,24 @@ public class DispatchService {
     private DispatchRepository dispatchRepository;
 
 
+    /**
+     * 목록조회
+     *
+     * @return
+     */
     public List<Dispatch> findDispatchList() {
         return dispatchRepository.findAll();
-//        return dispatchRepository.findByDriverStatusNot(DriverStatus.DRIVING);
     }
 
+    /**
+     * 택시 배차 요청
+     *
+     * @param currentAddress
+     * @return
+     */
     @Transactional
     public Dispatch saveDispatch(String currentAddress) {
         // TODO user가 승객인지 검사
-
         return dispatchRepository.save(
                 Dispatch.builder()
                         .address(currentAddress)
@@ -31,6 +40,12 @@ public class DispatchService {
     }
 
 
+    /**
+     * 기사 배차
+     *
+     * @param id
+     * @return
+     */
     @Transactional
     public Dispatch takeTheDispatch(Long id) {
         // TODO SessionUser가 택시기사인지 확인

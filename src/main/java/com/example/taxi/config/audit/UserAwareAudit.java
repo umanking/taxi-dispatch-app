@@ -1,10 +1,8 @@
-package com.example.taxi.config;
+package com.example.taxi.config.audit;
 
-import com.example.taxi.domain.user.User;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 
-import java.security.Security;
 import java.util.Optional;
 
 @Configuration
