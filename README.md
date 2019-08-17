@@ -8,6 +8,7 @@
 
 ### 실행
 ```shell script
-mvn spring-boot:run
+$ mvn clean compile build
+$ mvn spring-boot:run
 ```
 
