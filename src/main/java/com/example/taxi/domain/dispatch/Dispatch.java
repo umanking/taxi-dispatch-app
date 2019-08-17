@@ -1,5 +1,6 @@
 package com.example.taxi.domain.dispatch;
 
+import com.example.taxi.common.BaseJpaModel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table
-public class Dispatch {
+public class Dispatch extends BaseJpaModel {
 
     @Id
     @GeneratedValue
