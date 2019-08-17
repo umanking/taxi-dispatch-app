@@ -1,7 +1,7 @@
 package com.example.taxi.controller;
 
-import com.example.taxi.domain.dispatch.Dispatch;
 import com.example.taxi.domain.dispatch.DispatchService;
+import com.example.taxi.dto.DispatchDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,20 +15,18 @@ public class DispatchController {
     private DispatchService dispatchService;
 
     @GetMapping
-    public List<Dispatch> findDispatchList() {
+    public List<DispatchDto.DispatchResponse> findDispatchList() {
         return dispatchService.findDispatchList();
+
     }
 
     @PostMapping
-    public Dispatch saveDispatch(@RequestBody String currentAddress) {
-        // 주소 validation 100자를 넘기지 않아야한다.
-        // TODO 성공일때 담아서 보내야함
+    public DispatchDto.DispatchResponse saveDispatch(@RequestBody String currentAddress) {
         return dispatchService.saveDispatch(currentAddress);
     }
 
     @PutMapping
-    public Dispatch takeTheDispatch(@RequestParam Long id) {
-        // TODO 성공일때 담아서 보내야함
+    public DispatchDto.DispatchResponse takeTheDispatch(@RequestParam Long id) {
         return dispatchService.takeTheDispatch(id);
     }
 

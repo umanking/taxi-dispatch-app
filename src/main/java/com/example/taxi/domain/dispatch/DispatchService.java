@@ -1,9 +1,13 @@
 package com.example.taxi.domain.dispatch;
 
+import com.example.taxi.dto.DispatchDto;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -14,14 +18,20 @@ public class DispatchService {
     @Autowired
     private DispatchRepository dispatchRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
 
     /**
      * 목록조회
      *
      * @return
      */
-    public List<Dispatch> findDispatchList() {
-        return dispatchRepository.findAll();
+    public List<DispatchDto.DispatchResponse> findDispatchList() {
+        List<Dispatch> dispatches = dispatchRepository.findAll();
+        Type listType = new TypeToken<List<DispatchDto.DispatchResponse>>() {
+        }.getType();
+        return modelMapper.map(dispatches, listType);
     }
 
     /**
@@ -31,12 +41,14 @@ public class DispatchService {
      * @return
      */
     @Transactional
-    public Dispatch saveDispatch(String currentAddress) {
-        // TODO user가 승객인지 검사
-        return dispatchRepository.save(
+    public DispatchDto.DispatchResponse saveDispatch(String currentAddress) {
+        // TODO user가 승객인지 확인
+        Dispatch saveDispatch = dispatchRepository.save(
                 Dispatch.builder()
                         .address(currentAddress)
                         .build());
+
+        return modelMapper.map(saveDispatch, DispatchDto.DispatchResponse.class);
     }
 
 
@@ -47,9 +59,8 @@ public class DispatchService {
      * @return
      */
     @Transactional
-    public Dispatch takeTheDispatch(Long id) {
+    public DispatchDto.DispatchResponse takeTheDispatch(Long id) {
         // TODO SessionUser가 택시기사인지 확인
-
         Optional<Dispatch> dispatchOptional = dispatchRepository.findByIdAndDriverStatus(id, DriverStatus.WAITING);
         if (!dispatchOptional.isPresent()) {
             throw new RuntimeException("누군가가 이미 차지했습니다");
@@ -58,8 +69,8 @@ public class DispatchService {
         dispatch.setDriverStatus(DriverStatus.COMPLETED);
         dispatch.setCompletedAt(LocalDateTime.now());
         // TODO SessionUser를 할당한다.
-//        dispatch.setAssignDriver(SessionUser.getEmail);
+        //dispatch.setAssignDriver(SessionUser.getEmail);
 
-        return dispatch;
+        return modelMapper.map(dispatch, DispatchDto.DispatchResponse.class);
     }
 }

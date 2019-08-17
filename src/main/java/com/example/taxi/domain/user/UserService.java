@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Service
 public class UserService {
 
@@ -43,12 +41,11 @@ public class UserService {
     /**
      * 로그인 프로세스
      *
-     * @param request
      * @param user
      * @return
      */
-    public LoginDto.LoginResponse login(HttpServletRequest request, LoginDto.LoginRequest user) {
-        // email, password validate
+    public LoginDto.LoginResponse login(LoginDto.LoginRequest user) {
+        // TODO email, password validate
         User existUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
 
         if (existUser != null) {

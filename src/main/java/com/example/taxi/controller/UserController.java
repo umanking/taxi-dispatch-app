@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-
 @RestController
 @RequestMapping(value = "/api/v1/user")
 public class UserController {
@@ -24,8 +22,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public LoginDto.LoginResponse login(HttpServletRequest request, @RequestBody LoginDto.LoginRequest user) {
-        return userService.login(request, user);
+    public LoginDto.LoginResponse login(@RequestBody LoginDto.LoginRequest user) {
+        return userService.login(user);
     }
 
 

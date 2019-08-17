@@ -1,4 +1,3 @@
-# API 스펙
 
 
 ### POST 회원가입 
@@ -7,20 +6,31 @@
 https://example.com/api/v1/user
 ```
 
-Request
+**[Request]**
 
 ```json
 {
-	"email": "umanking@gmail.com",
+  "email": "umanking@gmail.com",
   "password": "1234",
-  "userStatus" "DRIVER"  #CUSTOMER
+  "userStatus":"CUSTOMER"
 }
 ```
 
-Response
+| 키         | 설명                               | 필수 |
+| ---------- | ---------------------------------- | ---- |
+| email      | 이메일                             | O    |
+| password   | 비밀번호                           | O    |
+| userStatus | 접속 유저의 상태(CUSTOMER, DRIVER) | O    |
+
+
+
+**[Response]**
 
 ```json
-
+{
+    "email": " umanking@gmail.com",
+    "userStatus": "CUSTOMER"
+}
 ```
 
 
@@ -35,19 +45,29 @@ Response
 https://example.com/api/v1/user/login
 ```
 
-Request
+**[Request]**
 
 ```json
 {
-	"email": "umanking@gmail.com",
+  "email": "umanking@gmail.com",
   "password": "1234",
 }
 ```
 
-Response
+| 키       | 설명     | 필수 |
+| -------- | -------- | ---- |
+| email    | 이메일   | O    |
+| password | 비밀번호 | O    |
+
+
+
+**[Response]**
 
 ```json
-
+{
+    "email": " umanking@gmail.com",
+    "userStatus": "CUSTOMER"
+}
 ```
 
 
@@ -64,7 +84,7 @@ Response
 https://example.com/api/v1/dispatch
 ```
 
-Request
+**[Request]**
 
 ```json
 {
@@ -72,10 +92,22 @@ Request
 }
 ```
 
-Response
+| 키      | 설명                                          | 필수 |
+| ------- | --------------------------------------------- | ---- |
+| address | 현재의 위치(주소) 100자리를 넘지 않아야 한다. | O    |
+
+
+
+**[Response]**
 
 ```json
-
+{
+    "address": "{\n\t\"address\": \"서울시,마곡동 마곡중앙로76\"\n}",
+    "assignDriver": null,
+    "driverStatus": "WAITING",
+    "requestAt": "2019-08-18T07:59:35.081925",
+    "completedAt": null
+}
 ```
 
 
@@ -86,174 +118,61 @@ Response
 
 ### GET 목록조회
 
+**[Request]**
+
 ```
 https://example.com/api/v1/dispatch
 ```
 
-Request
+
+
+**[Response]**
 
 ```json
-{}
+[
+    {
+        "address": "{\n\t\"address\": \"서울시 마곡동 마곡중앙로76\"\n}",
+        "assignDriver": null,
+        "driverStatus": "COMPLETED",
+        "requestAt": "2019-08-18T08:05:14.091732",
+        "completedAt": "2019-08-18T08:05:47.142441"
+    },
+    {
+        "address": "{\n\t\"address\": \"서울시 마곡동 마곡중앙로123\"\n}",
+        "assignDriver": null,
+        "driverStatus": "WAITING",
+        "requestAt": "2019-08-18T08:05:21.632101",
+        "completedAt": null
+    }
+]
 ```
 
-Response
-
-```json
-
-```
-
-
+배차가 완료(`COMPLETED`)되거나 대기(`WAITING`) 상태인 목록 전부를 표시
 
 ------
 
 ### PUT 기사 배차
 
-```
-https://example.com/api/v1/dispatch?id=23
-```
-
-Request
-
-```json
+**[Request]**
 
 ```
-
-
-
-Response
-
-```json
-
+https://example.com/api/v1/dispatch?id=2
 ```
 
+| 키   | 설명          | 필수여부 |
+| ---- | ------------- | -------- |
+| id   | dispatch의 id | O        |
 
-
-
-
-### POST 회원가입 
-
-```
-https://example.com/api/v1/user
-```
-
-Request
+**[Response]**
 
 ```json
 {
-	"email": "umanking@gmail.com",
-  "password": "1234",
-  "userStatus" "DRIVER"  #CUSTOMER
+    "address": "{\n\t\"address\": \"서울시 마곡동 마곡중앙로76\"\n}",
+    "assignDriver": null,
+    "driverStatus": "COMPLETED",
+    "requestAt": "2019-08-18T08:05:14.091732",
+    "completedAt": "2019-08-18T08:05:47.142441"
 }
 ```
 
-Response
-
-```json
-
-```
-
-
-
-------
-
-
-
-### POST 로그인 
-
-```
-https://example.com/api/v1/user/login
-```
-
-Request
-
-```json
-{
-	"email": "umanking@gmail.com",
-  "password": "1234",
-}
-```
-
-Response
-
-```json
-
-```
-
-
-
-
-
-------
-
-
-
-### POST 택시배차 요청
-
-```
-https://example.com/api/v1/dispatch
-```
-
-Request
-
-```json
-{
-	"address": "서울시,마곡동 마곡중앙로76",
-}
-```
-
-Response
-
-```json
-
-```
-
-
-
-
-
-------
-
-### GET 목록조회
-
-```
-https://example.com/api/v1/dispatch
-```
-
-Request
-
-```json
-{}
-```
-
-Response
-
-```json
-
-```
-
-
-
-------
-
-### PUT 기사 배차
-
-```
-https://example.com/api/v1/dispatch?id=23
-```
-
-Request
-
-```json
-
-```
-
-
-
-Response
-
-```json
-
-```
-
-
-
+- 기사 배치가 되었으면, `driverStatus` 를 `COMPLETED` 로  변경, `assignDriver` 에 자기 자신 할당
