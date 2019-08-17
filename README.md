@@ -3,9 +3,8 @@
 ### DB 모델
 ![](https://user-images.githubusercontent.com/28615416/63217862-7be79b80-c188-11e9-8cc4-1f3c8566f9fc.png)
 
-### API SPEC 
-
-[API 스펙 문서](../document/api-spec.md)
+### API 스펙 
+[](api-spec.md)
 
 ### 실행
 ```shell script
