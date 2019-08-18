@@ -5,7 +5,6 @@ import com.example.taxi.dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -22,7 +21,6 @@ public class UserService {
      * @param user
      * @return
      */
-    @Transactional
     public UserDto.UserResponse saveUser(UserDto.UserRequest user) {
         User existUser = userRepository.findByEmail(user.getEmail());
         if (existUser != null) {

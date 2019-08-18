@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Dispatch extends BaseJpaModel {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Length(max = 100, message = "Address must be 100 character in length")

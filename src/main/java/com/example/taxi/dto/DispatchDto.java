@@ -11,6 +11,7 @@ public class DispatchDto {
     @Getter
     @Setter
     public static class DispatchResponse {
+        private Long id;
         private String address;
         private String assignDriver;
         private DriverStatus driverStatus;

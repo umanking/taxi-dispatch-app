@@ -12,7 +12,7 @@ https://example.com/api/v1/user
 {
   "email": "umanking@gmail.com",
   "password": "1234",
-  "userStatus":"CUSTOMER"
+  "accountStatus":"CUSTOMER"
 }
 ```
 
@@ -20,7 +20,7 @@ https://example.com/api/v1/user
 | ---------- | ---------------------------------- | ---- |
 | email      | 이메일                             | O    |
 | password   | 비밀번호                           | O    |
-| userStatus | 접속 유저의 상태(CUSTOMER, DRIVER) | O    |
+| accountStatus | 접속 유저의 상태(CUSTOMER, DRIVER) | O    |
 
 
 
@@ -29,7 +29,7 @@ https://example.com/api/v1/user
 ```json
 {
     "email": " umanking@gmail.com",
-    "userStatus": "CUSTOMER"
+    "accountStatus": "CUSTOMER"
 }
 ```
 
@@ -66,7 +66,7 @@ https://example.com/api/v1/user/login
 ```json
 {
     "email": " umanking@gmail.com",
-    "userStatus": "CUSTOMER"
+    "accountStatus": "CUSTOMER"
 }
 ```
 
