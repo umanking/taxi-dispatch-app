@@ -1,12 +1,12 @@
-# 택시 배차 앱 API 
+# Taxi Dispatch Service API 
 
-## DB 
+## DB Modeling
 ![](https://user-images.githubusercontent.com/28615416/63218212-72aefc80-c191-11e9-879d-6caf50cacab9.png)
 
-## API 스펙 문서
+## API Spec Documentation
 - [API 스펙](api-spec.md)
 
-## 실행 가이드
+## How to start
 1. 프로젝트를 clone 한다.
 ```shell script
 git clone https://github.com/umanking/taxi-dispatch-app.git
