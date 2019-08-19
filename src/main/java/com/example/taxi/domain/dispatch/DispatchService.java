@@ -28,6 +28,7 @@ public class DispatchService {
      * @return
      */
     public List<DispatchDto.DispatchResponse> findDispatchList() {
+        // TODO sorting
         List<Dispatch> dispatches = dispatchRepository.findAll();
         Type listType = new TypeToken<List<DispatchDto.DispatchResponse>>() {
         }.getType();

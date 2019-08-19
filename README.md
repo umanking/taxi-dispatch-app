@@ -1,20 +1,40 @@
 # Taxi Dispatch Service API 
+택시 배차 API
 
-## DB Modeling
+## DataBase Model
 ![](https://user-images.githubusercontent.com/28615416/63218212-72aefc80-c191-11e9-879d-6caf50cacab9.png)
 
-## API Spec Documentation
-- [API 스펙](api-spec.md)
 
-## How to start
-1. 프로젝트를 clone 한다.
+## Prerequisite
+- Java8 (openjdk 1.8)
+- maven 
+- Your preferred IDE
+    - intellij IDEA 
+
+
+openjdk 1.8 install  
+```shell script
+brew tap AdoptOpenJDK/openjdk
+brew cask install adoptopenjdk8
+
+```
+
+maven install 
+```shell script
+brew install maven
+```
+
+
+## Running Application locally 
+[http://localhost:8080](http://localhost:8080)
+
 ```shell script
 git clone https://github.com/umanking/taxi-dispatch-app.git
+cd taxi-dispatch-app
+./mvnw package
+java -jar target/*.jar
 ```
 
-2. 프로젝트를 open한다. 
-3. 루트 경로에서 해당 명령어를 입력한다.
-```shell script
-$ mvn clean compile build
-$ mvn spring-boot:run
-```
+
+## API Spec
+- [API 스펙](api-spec.md)
