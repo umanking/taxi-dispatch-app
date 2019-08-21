@@ -5,6 +5,7 @@ import com.example.taxi.dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -21,7 +22,8 @@ public class UserService {
      * @param user
      * @return
      */
-    public UserDto.UserResponse saveUser(UserDto.UserRequest user) {
+    @Transactional
+    public UserDto.UserResponse saveUser(User user) {
         User existUser = userRepository.findByEmail(user.getEmail());
         if (existUser != null) {
             throw new RuntimeException("이미 존재하는 유저입니다.");

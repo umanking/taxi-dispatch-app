@@ -4,9 +4,9 @@ import com.example.taxi.common.BaseJpaModel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.internal.util.Assert;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -18,8 +18,10 @@ public class User extends BaseJpaModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "email is mandatory")
     private String email;
 
+    @NotBlank(message = "password is mandatory")
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -27,9 +29,6 @@ public class User extends BaseJpaModel {
 
     @Builder(builderMethodName = "ByCreateBuilder")
     public User(String email, String password, UserStatus userStatus) {
-        Assert.notNull(email, "email must not be null");
-        Assert.notNull(password, "password must not be null");
-        Assert.notNull(userStatus, "userStatus must not be null");
         this.email = email;
         this.password = password;
         this.userStatus = userStatus;
