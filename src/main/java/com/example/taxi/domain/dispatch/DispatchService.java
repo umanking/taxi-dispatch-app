@@ -45,7 +45,7 @@ public class DispatchService {
     public DispatchDto.DispatchResponse saveDispatch(String currentAddress) {
         // TODO user가 승객인지 확인
         Dispatch saveDispatch = dispatchRepository.save(
-                Dispatch.builder()
+                Dispatch.ByCreateBuilder()
                         .address(currentAddress)
                         .build());
 

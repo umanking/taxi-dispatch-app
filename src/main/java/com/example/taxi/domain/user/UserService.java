@@ -27,7 +27,7 @@ public class UserService {
             throw new RuntimeException("이미 존재하는 유저입니다.");
         }
 
-        User savedUser = userRepository.save(User.builder()
+        User savedUser = userRepository.save(User.ByCreateBuilder()
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .userStatus(user.getUserStatus())

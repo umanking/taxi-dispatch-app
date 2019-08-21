@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.modelmapper.internal.util.Assert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,8 +29,9 @@ public class Dispatch extends BaseJpaModel {
     private LocalDateTime requestAt;
     private LocalDateTime completedAt;
 
-    @Builder
+    @Builder(builderMethodName = "ByCreateBuilder")
     public Dispatch(String address) {
+        Assert.notNull(address, "address must not be null");
         this.address = address;
         this.driverStatus = DriverStatus.WAITING;
         this.requestAt = LocalDateTime.now();
